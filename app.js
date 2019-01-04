@@ -57,10 +57,17 @@ app.post("/blogs", function(req, res){
 });
 
 //show route
-app.get("/blogs/:id", function(req, res) {
-    res.send("show page");
+app.get("/blogs/:id", function(req, res){
+   Blog.findById(req.params.id, function(err, foundBlog){
+       if(err){
+           //console.log(err);
+           res.redirect("/blogs");
+       } else {
+           res.render("show", {blog: foundBlog});
+       }
+   });
 });
 
 app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("Server has started.")
+    console.log("Server has started.");
 });
