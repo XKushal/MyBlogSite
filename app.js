@@ -108,7 +108,7 @@ app.delete("/blogs/:id", function(req, res){
         }
     });
 });
-
+//server
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server has started.");
 });
