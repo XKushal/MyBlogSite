@@ -1,3 +1,4 @@
+
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -5,7 +6,8 @@ var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 
-mongoose.connect('mongodb://localhost:27017/BlogApp', { useNewUrlParser: true });
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/analyst"
+mongoose.connect(url, { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -108,7 +110,7 @@ app.delete("/blogs/:id", function(req, res){
         }
     });
 });
-//server
+
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server has started.");
 });
